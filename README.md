@@ -15,13 +15,13 @@ This project uses Docker to set up a PHP development environment with Apache. Th
    If you haven't already, clone the repository to your local machine:
 
    ```bash
-   git clone <repository-url>
-   cd <repository-directory>
+   git clone https://github.com/shoaib7895/News-Aggregator-API.git
+   cd News-Aggregator-API
 
 2. **Build and Start the Services**
 
   Use Docker Compose to build the Docker image and start the container. This will also start any other services defined in docker-compose.yml.
-
+  ```bash
   docker-compose up --build
 
   The --build flag ensures that the Docker image is rebuilt according to the Dockerfile changes.
@@ -33,17 +33,17 @@ This project uses Docker to set up a PHP development environment with Apache. Th
 
 4. **Managing the Container**  
     To stop the container, use:
-
+```bash
     docker-compose down
 
     To restart the container, use:
-
+```bash
     docker-compose up -d
 
     To view logs:
-
+```bash
     docker-compose logs
 
     To run a command in the running container, use:
-
+```bash
     docker-compose exec web bash
