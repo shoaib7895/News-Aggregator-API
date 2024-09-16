@@ -28,8 +28,9 @@ RUN composer install
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 RUN chmod -R 755 /var/www/html .
 
-RUN php artisan key:generate
+
 RUN mv .env.example .env
+RUN php artisan key:generate
 # Expose port 80
 EXPOSE 80
 
