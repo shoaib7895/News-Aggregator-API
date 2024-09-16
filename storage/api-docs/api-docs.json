@@ -123,6 +123,11 @@
                                         "type": "string",
                                         "format": "password",
                                         "example": "password123"
+                                    },
+                                    "password_confirmation": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password123"
                                     }
                                 },
                                 "type": "object"
