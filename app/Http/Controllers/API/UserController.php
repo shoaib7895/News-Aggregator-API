@@ -217,7 +217,7 @@ class UserController extends Controller
      *             @OA\Property(property="token", type="string", example="reset_token"),
      *             @OA\Property(property="email", type="string", example="john.doe@example.com"),
      *             @OA\Property(property="password", type="string", format="password", example="newpassword123"),
-     *             @OA\Property(property="password_confirmation", type="string", format="password", example="newpassword123")
+     *             @OA\Property(property="password_confirmation", type="string", format="password", example="newpassword123"),
      *         )
      *     ),
      *     @OA\Response(
