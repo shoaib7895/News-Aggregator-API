@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\ArticleController;
+use App\Http\Controllers\API\UserPreferenceController;
 
 // throttling middleware to rate limit on requests
 Route::middleware('throttle:60,1')->group(function () {
