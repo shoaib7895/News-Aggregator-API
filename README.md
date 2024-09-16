@@ -23,8 +23,8 @@ This project uses Docker to set up a PHP development environment with Apache. Th
   Use Docker Compose to build the Docker image and start the container. This will also start any other services defined in docker-compose.yml.
   ```bash
   docker-compose up --build
-
- **The --build flag ensures that the Docker image is rebuilt according to the Dockerfile changes.**
+  ```
+ The --build flag ensures that the Docker image is rebuilt according to the Dockerfile changes.
 
 3. **Access the Application**
 
@@ -32,18 +32,24 @@ This project uses Docker to set up a PHP development environment with Apache. Th
   You should see your Laravel application running.
 
 4. **Managing the Container**  
-    To stop the container, use:
+
+  To stop the container, use:
     ```bash
     docker-compose down
-
- **To restart the container, use:**
+    ```
+    To restart the container, use:
      ```bash
      docker-compose up -d
-
-**To view logs:**
+     ```
+    To view logs:
     ```bash
     docker-compose logs
-
-**To run a command in the running container, use:**
+    ```
+    To run a command in the running container, use:
     ```bash
     docker-compose exec web bash
+    ```
+
+
+# API Documentation
+For API documentation, including interactive API documentation and endpoint details, please visit http://localhost:80/api/documentation after starting the Docker environment. This link points to the Swagger documentation hosted within the Docker container.   
