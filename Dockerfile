@@ -1,34 +1,36 @@
-# Use the official PHP image with Apache
-FROM php:8.2-apache
-
-# Install system dependencies
-RUN apt-get update && apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev libzip-dev libicu-dev g++ libonig-dev libxml2-dev
-
-# Install PHP extensions
+FROM php:8.1-apache
+RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
+# Install system dependencies and PHP extensions
+RUN apt-get update && apt-get install --no-install-recommends -y \
+    libzip-dev \
+    libxml2-dev \
+    mariadb-client \
+    zip \
+    unzip \
+    cron \
+    curl \
+    vim \
+    wget \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libpng-dev \
+  && apt-get clean && rm -rf /var/lib/apt/lists/*
+# Install PHP GD extension
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd \
-    && docker-php-ext-install intl zip mysqli pdo pdo_mysql
-
-# Enable Apache mod_rewrite
-RUN a2enmod rewrite
-
-# Set the working directory
+  && docker-php-ext-install -j$(nproc) gd
+RUN pecl install redis zip pcov \
+  && docker-php-ext-enable redis zip \
+  && docker-php-ext-install pdo_mysql bcmath soap \
+  && docker-php-source delete
+RUN a2enmod rewrite \
+  && a2enmod headers \
+  && a2enmod expires
+COPY dir.conf /etc/apache2/mods-enabled/dir.conf
+COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN chmod 755 /var/www/html && chown -R www-data:www-data /var/www/html
 WORKDIR /var/www/html
-
-# Copy the application files
 COPY . /var/www/html
-
-# Install Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# Install PHP dependencies
-RUN composer install
-
-# Set proper permissions
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
-
-# Expose port 80
+RUN chown -R www-data:www-data .
 EXPOSE 80
-
-# Start Apache
-CMD ["apache2-foreground"]
+CMD [ "sh", "-c", "apache2-foreground" ]

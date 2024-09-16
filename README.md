@@ -32,8 +32,7 @@ This project uses Docker to set up a PHP development environment with Apache. Th
   You should see your Laravel application running.
 
 4. **Managing the Container**  
-
-  To stop the container, use:
+    To stop the container, use:
     ```bash
     docker-compose down
     ```
