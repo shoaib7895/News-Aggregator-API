@@ -24,7 +24,7 @@ This project uses Docker to set up a PHP development environment with Apache. Th
   ```bash
   docker-compose up --build
 
-  The --build flag ensures that the Docker image is rebuilt according to the Dockerfile changes.
+ **The --build flag ensures that the Docker image is rebuilt according to the Dockerfile changes.**
 
 3. **Access the Application**
 
@@ -33,17 +33,17 @@ This project uses Docker to set up a PHP development environment with Apache. Th
 
 4. **Managing the Container**  
     To stop the container, use:
-```bash
+    ```bash
     docker-compose down
 
-    To restart the container, use:
-```bash
-    docker-compose up -d
+ **To restart the container, use:**
+     ```bash
+     docker-compose up -d
 
-    To view logs:
-```bash
+**To view logs:**
+    ```bash
     docker-compose logs
 
-    To run a command in the running container, use:
-```bash
+**To run a command in the running container, use:**
+    ```bash
     docker-compose exec web bash
