@@ -18,4 +18,8 @@ Route::middleware('throttle:60,1')->group(function () {
 Route::middleware(['auth:sanctum', 'throttle:60,1'])->group(function () {
     Route::get('articles', [ArticleController::class, 'index']);  // Fetch articles with pagination and search
     Route::get('articles/{id}', [ArticleController::class, 'show']);  // Fetch single article
+
+    Route::get('preferences', [UserPreferenceController::class, 'show']);  // Get user preferences
+    Route::post('preferences', [UserPreferenceController::class, 'update']);  // Set or update preferences
+    Route::get('personalized-feed', [UserPreferenceController::class, 'personalizedFeed']);  // Get personalized news feed
 });
