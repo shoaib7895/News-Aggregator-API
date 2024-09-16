@@ -1,4 +1,4 @@
-FROM php:8.1-apache
+FROM php:8.3-apache
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
 # Install system dependencies and PHP extensions
 RUN apt-get update && apt-get install --no-install-recommends -y \
@@ -32,5 +32,8 @@ RUN chmod 755 /var/www/html && chown -R www-data:www-data /var/www/html
 WORKDIR /var/www/html
 COPY . /var/www/html
 RUN chown -R www-data:www-data .
+RUN composer install
+RUN mv .env.example .env
+RUN php artisan key:generate
 EXPOSE 80
 CMD [ "sh", "-c", "apache2-foreground" ]
